@@ -9,12 +9,15 @@ const authRouter = require('./routes/auth')
 const {csrfSync} = require("csrf-sync");
 const cookieParser = require('cookie-parser')
 const User = require('./model/user')
+require('dotenv').config()
 
 
 
 const app = express()
+const username = process.env.MONGODB_USERNAME
+const password = process.env.MONGODB_PASS
 const store = new MongoDbSession({
-    uri:"mongodb://127.0.0.1:27017/shop",
+    uri:`mongodb+srv://${username}:${password}@cluster0.bhci9is.mongodb.net/shop?retryWrites=true&w=majority`,
     collection:'session'
 })
 

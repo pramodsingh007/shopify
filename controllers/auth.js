@@ -53,7 +53,6 @@ const postSignup = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const cnfPassword = req.body.cnfPassword;
-  console.log(req.body);
   const salt = await bcrypt.genSaltSync(12);
   const hash = await bcrypt.hashSync(password, salt);
 
