@@ -1,0 +1,31 @@
+<%- include('partials/head') -%>
+<%- include('navbar') -%>
+
+<main class="flex justify-center">
+
+    <form action="/signup" method="post" class="w-[40rem] space-y-5">
+        <div>
+        <label class="text-3xl" for="email">email</label>
+        <input  class="w-full h-10 bg-slate-300 text-2xl" type="email" name="email" id="email">
+        <%if(locals.error){%>
+        <p class="text-red-600"><%=error%></p>
+        <%}%>
+    </div>
+    <div>
+        <label class="text-3xl" for="password">password</label>
+        <input class="w-full h-10 bg-slate-300 text-2xl" type="password" name="password" id="password">
+    </div>
+    
+    <div>
+        <label class="text-3xl" for="cnfPassword">confirm password</label>
+        <input class="w-full h-10 bg-slate-300 text-2xl" type="password" name="cnfPassword" id="cnfPassword">
+    </div>
+    <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+    <button type="submit" class="p-3 rounded-md text-white font-bold bg-blue-700">Signup</button>
+</form>
+
+</main>
+
+
+
+<%- include('partials/footer') -%>

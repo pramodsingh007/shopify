@@ -1,0 +1,36 @@
+<nav class="bg-yellow-300 p-4 mb-24">
+    <ul class=" flex justify-between ">
+        
+        <li>
+           <a href="/">shop</a>
+        </li>
+        <%if(locals.isLogedIn){%>
+        <li>
+            <a href="/cart">cart</a>
+        </li>
+        <li>
+            <a href="/order">order</a>
+        </li>
+        <li>
+            <a href="/admin/shop">admin</a>
+        </li>
+        <li>
+            <a href="/admin/shop/add-new-product">add new item</a>
+        </li>
+        <li>
+            <form action="/logout" method="post">
+                <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+                <button type="submit">logout</button>
+            </form>
+        </li>
+        <%}else{%>
+        <li>
+            <a href="/login">login</a>
+            
+        </li>
+        <li>
+            <a href="/signup">signup</a>
+        </li>
+        <%}%>
+    </ul>
+</nav>

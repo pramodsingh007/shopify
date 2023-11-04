@@ -1,0 +1,33 @@
+<%- include('partials/head') -%>
+<%- include('navbar') -%>
+
+<main class="flex justify-center">
+
+    <%if(products.length > 0){%>
+
+    <ul class="space-y-4 ">
+        <%for(var p of products){%>
+    <li class="flex justify-between bg-yellow-300 w-[30rem] p-4">
+        <p><%=p.product.title%></p>
+        <p><%=p.quantity%> X</p>
+        <form action="/cart/delete" method="post">
+            <input type="hidden" name="prodId" id="prodId" value="<%=p.product._id.toString()%>">
+            <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    <%}%>
+</ul>
+</main>
+<hr>
+<form action="/order" method="post" class="text-center mt-10 ">
+    <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+    <button type="submit" class="bg-red-400 text-white p-4 rounded-lg">Order</button>
+</form>
+<%}else{%>
+    <main class="flex justify-center">
+    <p>nothing to show add items first..</p>
+    <%}%>
+</main>
+
+<%- include('partials/footer') -%>

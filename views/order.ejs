@@ -1,0 +1,32 @@
+<%- include('partials/head') -%>
+<%- include('navbar') -%>
+
+
+
+<main class="flex justify-center">
+
+    <ul class="space-y-10 w-[40rem]">
+        <%for(let order of orders){%>
+    <li>
+        <h1 class="font-bold">Order Id #<%=order._id.toString()%></h1>
+        <ul>
+            <%for(let i of order.items){%>
+            <li class="flex  justify-between p-3 bg-fuchsia-400 border-2">
+                <p><%=i.product.title%></p>
+                <p><%=i.quantity%>X</p>
+            </li>
+            <%}%>
+        </ul>
+    </li>
+    <%}%>
+</ul>
+        </main>
+
+
+
+
+
+
+
+
+<%- include('partials/footer') -%>

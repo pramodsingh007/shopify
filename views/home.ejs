@@ -1,0 +1,33 @@
+<%- include('partials/head') -%>
+<%- include('navbar') -%>
+<main class=" flex flex-wrap gap-5 mt-12">
+<%if(products.length > 0){%>
+<% products.map((product)=>{ %>
+<div class="max-w-[15rem] max-h-[35rem]  bg-red-400  rounded-2xl overflow-hidden">
+    <img class="w-full" src=<%=product.imageUrl%> alt="">
+    <div class="p-4">
+    <h1 class="font-bold text-gray-700 mb-2"> <%=product.title%> </h1>
+    <p class="text-gray-700"> <%=product.description%> </p>
+    <p>price <%=product.price%></p>
+
+    <%if(role==='admin'){%>
+    <a href=<%='/admin/shop/'+product._id%>>show details</a> <br>
+    <a href=<%='/admin/shop/delete/'+product._id%>>delete product</a>
+    <%}else{%>
+        <a href=<%='/user/'+product._id%>>show details</a>
+        <form action="/cart" method="post">
+            <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+            <input type="hidden" name="prodId" id="prodId" value=<%=product._id.toString()%>>
+            <button type="submit" class=" bg-red-900 text-white p-2">add to cart</button>
+        </form>
+        <%}%>
+    </div>
+</div>
+
+<%})%>
+<%}else{%>
+    <p>no items founded</p>
+    <%}%>
+</main>
+
+<%- include('partials/footer') -%>
