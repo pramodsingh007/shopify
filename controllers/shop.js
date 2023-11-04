@@ -20,8 +20,8 @@ const getItem = async (req, res) => {
 };
 
 const getCartItems = async (req, res) => {
-  const cart =await Cart.findOne({userId:req.user._id})
-  cartItems = cart.items
+  const cart = await Cart.findOne({userId:req.user._id})
+  const cartItems = cart.items
   res.render("cart.ejs", { products: cartItems,isLogedIn:req.session.isLogedIn });
 };
 
